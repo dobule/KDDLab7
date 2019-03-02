@@ -7,7 +7,7 @@
 
 import sys
 import rankutil as ru
-
+import pralg as pr
 
 def print_usage_message():
    print("python3 pageRank.py [graphFile]")
@@ -23,9 +23,15 @@ def main():
 
    weight_f = lambda x, y: 1
 
-   graph = ru.read_graph_file(graphPath, weight_f)
+   graph, vertSchema = ru.read_graph_file(graphPath, weight_f)
 
-   print(graph)
+   rank = pr.page_rank(graph, 0.85, 0.00001)
+
+   
+   zipped = list(zip(vertSchema, rank))
+   zipped.sort(key=lambda x: x[1], reverse=True)
+
+   ru.print_pageranks(zipped)
 
    return 0
 

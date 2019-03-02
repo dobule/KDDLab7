@@ -36,8 +36,6 @@ def read_graph_file(filePath, weight_f):
       if edge[2] not in vertexList:
          vertexList.append(edge[2])
 
-   print(vertexList)
-
    fromVertex = np.array([vertexList.index(edge[0])
                           for edge in rawGraph])
    toVertex = np.array([vertexList.index(edge[2])
@@ -46,13 +44,9 @@ def read_graph_file(filePath, weight_f):
    edgeWeight = np.array([weight_f(edge[1], edge[3]) 
                           for edge in rawGraph])
 
-   print(fromVertex)
-   print(toVertex)
-   print(edgeWeight)
-
-
-   return csr_matrix((edgeWeight, (fromVertex, toVertex)),
-                     shape=(len(vertexList), len(vertexList)))
+   return (csr_matrix((edgeWeight, (fromVertex, toVertex)),
+                     shape=(len(vertexList), len(vertexList))),
+           vertexList)
 
 
 ###########################################################

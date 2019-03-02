@@ -24,8 +24,8 @@ def page_rank(graph, damp, maxError=0.0001):
 
    while curError > maxError:
       prevRank = curRank
-      curRank = np.matmul(graph, prevRank)
-      curRank = (1 - d) / numVert + d * curRank
+      curRank = graph * prevRank.T
+      curRank = (1 - damp) / numVert + damp * curRank
       curError = np.linalg.norm(curRank - prevRank, 2)
 
    return curRank
