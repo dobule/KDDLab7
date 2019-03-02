@@ -44,7 +44,7 @@ def read_graph_file(filePath, weight_f):
    edgeWeight = np.array([weight_f(edge[1], edge[3]) 
                           for edge in rawGraph])
 
-   return (csr_matrix((edgeWeight, (fromVertex, toVertex)),
+   return (csr_matrix((edgeWeight, (toVertex, fromVertex)),
                      shape=(len(vertexList), len(vertexList))),
            vertexList)
 

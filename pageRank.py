@@ -25,9 +25,8 @@ def main():
 
    graph, vertSchema = ru.read_graph_file(graphPath, weight_f)
 
-   rank = pr.page_rank(graph, 0.85, 0.00001)
+   rank = pr.page_rank(graph, .85, 0.00001)
 
-   
    zipped = list(zip(vertSchema, rank))
    zipped.sort(key=lambda x: x[1], reverse=True)
 
