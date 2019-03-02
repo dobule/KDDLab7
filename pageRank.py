@@ -5,11 +5,27 @@
 #
 # Usage: python3 pageRank.py [graphFile]
 
+import sys
+import rankutil as ru
+
+
 def print_usage_message():
    print("python3 pageRank.py [graphFile]")
 
 
 def main():
+
+   if len(sys.argv) != 2:
+      print_usage_message()
+      return
+
+   graphPath = sys.argv[1]
+
+   weight_f = lambda x, y: 1
+
+   graph = ru.read_graph_file(graphPath, weight_f)
+
+   print(graph)
 
    return 0
 

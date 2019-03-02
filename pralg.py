@@ -19,11 +19,13 @@ def page_rank(graph, damp, maxError=0.0001):
    numVert = graph.shape[0]
    curRank = np.full(numVert, 1 / numVert)
 
-   adjGraph = #TODO: 
-
+   # + 1 assures the while loop enters
    curError = maxError + 1
 
    while curError > maxError:
-      prevRank = curRank 
-      curRank = #TODO: adjGraph * curRank
+      prevRank = curRank
+      curRank = np.matmul(graph, prevRank)
+      curRank = (1 - d) / numVert + d * curRank
       curError = np.linalg.norm(curRank - prevRank, 2)
+
+   return curRank
